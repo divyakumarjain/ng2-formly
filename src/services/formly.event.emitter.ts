@@ -1,4 +1,5 @@
 import {Subject} from "rxjs/Subject";
+import {Injectable} from "@angular/core";
 
 
 export class FormlyValueChangeEvent {
@@ -14,6 +15,7 @@ export class FormlyEventEmitter extends Subject<String> {
   }
 }
 
+@Injectable()
 export class FormlyPubSub {
   Stream: FormlyEventEmitter;
   emitters = {};

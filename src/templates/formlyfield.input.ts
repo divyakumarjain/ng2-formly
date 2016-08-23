@@ -2,7 +2,6 @@ import {Component, ElementRef, AfterViewInit, Renderer, ViewChildren, QueryList}
 import {FormlyMessages, FormlyMessage} from "./../services/formly.messages";
 import {FormlyPubSub} from "./../services/formly.event.emitter";
 import {Field} from "./field";
-import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
 import {SingleFocusDispatcher} from "../services/formly.single.focus.dispatcher";
 
 @Component({
@@ -18,7 +17,7 @@ import {SingleFocusDispatcher} from "../services/formly.single.focus.dispatcher"
         <small class="text-muted text-danger"><formly-message [control]="key" [formDir]="form"></formly-message></small>
       </div>
     `,
-  directives: [FormlyMessage, FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
+  directives: [FormlyMessage],
   queries: {inputComponent: new ViewChildren("inputElement")}
 })
 export class FormlyFieldInput extends Field implements AfterViewInit {

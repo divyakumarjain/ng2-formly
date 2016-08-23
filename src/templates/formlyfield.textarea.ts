@@ -3,7 +3,6 @@ import {Component, AfterViewInit, ElementRef, Renderer, QueryList, ViewChildren}
 import {FormlyPubSub} from "../services/formly.event.emitter";
 import {FormlyMessages} from "../services/formly.messages";
 import {Field} from "./field";
-import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
 import {SingleFocusDispatcher} from "../services/formly.single.focus.dispatcher";
 
 @Component({
@@ -20,7 +19,7 @@ import {SingleFocusDispatcher} from "../services/formly.single.focus.dispatcher"
       <small class="text-muted">{{templateOptions.description}}</small>
     </fieldset>`,
   queries: {inputComponent: new ViewChildren("textAreaElement")},
-  directives: [FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES]
+  directives: []
 })
 export class FormlyFieldTextArea extends Field implements AfterViewInit {
   constructor(fm: FormlyMessages, ps: FormlyPubSub, renderer: Renderer, focusDispatcher: SingleFocusDispatcher) {

@@ -62,12 +62,11 @@ export class FormlyField extends FormlyCommon implements OnInit, OnChanges {
   createChildFields() {
     if (this.field && !this.field.template && !this.field.fieldGroup) {
       this.update = new FormlyEventEmitter();
-      this.fb.createChildFields(this.field, this, this.formlyConfig).then((ref: ComponentRef<any>) => {
-        this.childFieldRef = ref;
-        this.childFieldRef.instance.modelUpdateReceiver = this.modelUpdateEmitter;
-        ref.instance.changeFn.subscribe((event) => {
+      let ref: ComponentRef<Field> = this.fb.createChildFields(this.field, this, this.formlyConfig)
+      this.childFieldRef = ref;
+      this.childFieldRef.instance.modelUpdateReceiver = this.modelUpdateEmitter;
+      ref.instance.changeFn.subscribe((event) => {
           this.changeFunction(event, this.field);
-        });
       });
       this.ps.setEmitter(this.field.key, this.update);
     }

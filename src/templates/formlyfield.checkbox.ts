@@ -2,7 +2,7 @@ import {Component, Renderer, ElementRef, ViewChildren, QueryList} from "@angular
 import {Field} from "./field";
 import {FormlyMessages} from "./../services/formly.messages";
 import {FormlyPubSub} from "./../services/formly.event.emitter";
-import {AbstractControl, FormBuilder, FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
+import {AbstractControl, FormBuilder} from "@angular/forms";
 import {SingleFocusDispatcher} from "../services/formly.single.focus.dispatcher";
 @Component({
   selector: "formly-field-checkbox",
@@ -20,7 +20,7 @@ import {SingleFocusDispatcher} from "../services/formly.single.focus.dispatcher"
       <small class="text-muted">{{templateOptions.description}}</small>
     </div>
     `,
-  directives: [FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
+  directives: [],
   queries: {inputComponent: new ViewChildren("inputElement")}
 })
 export class FormlyFieldCheckbox extends Field {
