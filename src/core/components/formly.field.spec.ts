@@ -182,16 +182,6 @@ describe('FormlyField Component', () => {
       };
     });
 
-    it('should render type wrapper', () => {
-      testComponentInputs.field.type = 'other';
-
-      const fixture = createTestComponent('<formly-field [form]="form" [field]="field"></formly-field>');
-      const elm = getFormlyFieldElement(fixture.nativeElement);
-
-      expect(getLabelWrapper(elm).innerText).toEqual('Title');
-      expect(getInputField(elm).getAttribute('placeholder')).toEqual('Title');
-    });
-
     it('should render field wrapper', () => {
       testComponentInputs.field.wrappers = ['label'];
 

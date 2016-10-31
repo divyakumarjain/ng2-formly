@@ -286,6 +286,7 @@ export class HelloApp {
         type: 'toggle',
         templateOptions: {
           isAlert: true,
+          isLarge: false,
         },
       }, {
         className: 'section-label',
@@ -328,7 +329,8 @@ export class HelloApp {
             {
               type: 'input',
               key: 'investmentDate',
-              className: 'col-md-4',
+              className: 'col-xs-4',
+              optionsTypes: ['dateFormat'],
               templateOptions: {
                 label: 'Date of Investment:',
                 placeholder: 'dd/mm/yyyy such as 20/05/2015',
@@ -441,9 +443,10 @@ export class HelloApp {
     BrowserModule,
     FormlyModule.forRoot({
       types: [
-        { name: 'toggle', component: FormlyFieldToggle },
+        { name: 'toggle', component: FormlyFieldToggle, defaultOptions: { templateOptions: { isAlert: false, isLarge: true }}},
         { name: 'horizontalInput', extends: 'input'},
-        { name: 'repeatSection', component: RepeatComponent }],
+        { name: 'repeatSection', component: RepeatComponent },
+        { name: 'dateFormat', defaultOptions: { validators: { date: function() { return false; }}}}],
       validators: [{ name: 'required', validation: Validators.required}],
       validationMessages: [
         { name: 'required', message: (err, field) => `${field.templateOptions.label} is required.`},

@@ -2,6 +2,7 @@ export interface FormlyFieldConfig {
   key?: string;
   id?: string;
   templateOptions?: FormlyTemplateOptions;
+  optionsTypes?: any;
   validation?: any;
   validators?: any;
   asyncValidation?: any;

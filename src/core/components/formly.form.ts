@@ -171,7 +171,7 @@ export class FormlyForm implements OnInit, OnChanges {
   }
 
   private addFormControl(form: FormGroup, field: FormlyFieldConfig, model) {
-    const componentType: any = this.formlyConfig.getType(field.type).component;
+    const componentType: any = this.formlyConfig.getMergedType(field.type, field).component;
     if (componentType.createControl) {
       form.addControl(field.key, componentType.createControl(model, field));
     } else {
