@@ -162,7 +162,7 @@ export interface TypeOption {
   component?: any;
   wrappers?: string[];
   extends?: string;
-  defaultOptions?: any;
+  defaultOptions?: {validators?: any, templateOptions?: any};
 }
 
 export interface WrapperOption {

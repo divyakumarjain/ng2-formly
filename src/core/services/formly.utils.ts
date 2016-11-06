@@ -1,5 +1,6 @@
 import { FormlyFieldConfig } from '../components/formly.field.config';
 import { Injectable } from '@angular/core';
+import {isNullOrUndefined} from "util";
 @Injectable()
 export class FormlyUtils {
   getFieldId(formId: string, options: FormlyFieldConfig, index: string|number) {
@@ -19,14 +20,28 @@ export class FormlyUtils {
         return;
       }
       for (let srcArg in src) {
-        if (!dest[srcArg]) {
-          dest[srcArg] = this.clone(src[srcArg]);
+        if (isNullOrUndefined (dest[srcArg]) || this.isBlankString(dest[srcArg])) {
+          if(this.isFunction(src[srcArg])) {
+            dest[srcArg] = src[srcArg];
+          } else {
+
+            dest[srcArg] = this.clone(src[srcArg])
+          }
+
         } else if (this.objAndSameType(dest[srcArg], src[srcArg])) {
           this.reverseDeepMerge(dest[srcArg], src[srcArg]);
         }
       }
     });
     return dest;
+  }
+
+  private isFunction(propertyValue: any) {
+    return typeof(propertyValue) === 'function'
+  }
+
+  private isBlankString(propertyValue: any) {
+    return propertyValue === "";
   }
 
   objAndSameType(obj1, obj2) {
@@ -42,6 +57,6 @@ export class FormlyUtils {
     if (!this.isObject(value)) {
       return value;
     }
-    return Array.isArray(value) ? value.slice(0) : JSON.parse(JSON.stringify(value));
+    return Array.isArray(value) ? value.slice(0) : this.reverseDeepMerge({}, value);
   }
 }

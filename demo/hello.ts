@@ -333,11 +333,6 @@ export class HelloApp {
               optionsTypes: ['dateFormat'],
               templateOptions: {
                 label: 'Date of Investment:',
-                placeholder: 'dd/mm/yyyy such as 20/05/2015',
-                dateFormat: 'DD, d  MM, yy',
-                addonLeft: {
-                  class: 'fa fa-usd',
-                },
               },
             },
             {
@@ -446,7 +441,13 @@ export class HelloApp {
         { name: 'toggle', component: FormlyFieldToggle, defaultOptions: { templateOptions: { isAlert: false, isLarge: true }}},
         { name: 'horizontalInput', extends: 'input'},
         { name: 'repeatSection', component: RepeatComponent },
-        { name: 'dateFormat', defaultOptions: { validators: { date: function() { return false; }}}}],
+        { name: 'dateFormat', defaultOptions: { validators: { validation : function() { return false; }}, templateOptions: {
+          placeholder: 'dd/mm/yyyy such as 20/05/2015',
+          dateFormat: 'DD, d  MM, yy',
+          addonLeft: {
+            class: 'fa fa-usd',
+          },
+        }}}],
       validators: [{ name: 'required', validation: Validators.required}],
       validationMessages: [
         { name: 'required', message: (err, field) => `${field.templateOptions.label} is required.`},
